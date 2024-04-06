@@ -1,0 +1,26 @@
+.painel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.setor {
+    width: 200px;
+    height: 200px;
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    line-height: 200px;
+    cursor: pointer;
+}
+
+.setor:hover {
+    background-color: #2980b9;
+}
+
+.setor-detalhes {
+    display: none;
+    padding: 20px;
+    background-color: #f1f1f1;
+    margin-top: 20px;
+}

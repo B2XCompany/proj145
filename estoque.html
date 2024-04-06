@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens Cadastrados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        h1 {
+            text-align: center;
+            color: #2980b9;
+        }
+        .setor {
+            display: block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 24px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .setor:hover {
+            background-color: #2980b9;
+        }
+        .setor:nth-child(odd) {
+            background-color: #e74c3c;
+        }
+        .setor:nth-child(odd):hover {
+            background-color: #c0392b;
+        }
+        .btn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            margin: 20px auto;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .login-btn,
+        .inventory-btn,
+        .cart-btn {
+            position: fixed;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 18px;
+            line-height: 60px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 999; /* Coloquei um z-index maior para garantir que os botões estejam acima dos outros elementos */
+        }
+        .login-btn {
+            top: 20px;
+            right: 20px;
+        }
+        .inventory-btn {
+            top: 100px;
+            right: 20px;
+        }
+        .cart-btn {
+            top: 180px;
+            right: 20px;
+        }
+        .login-info {
+            position: absolute;
+            top: 20px;
+            right: 100px;
+            color: #333;
+        }
+        .login-form {
+            position: absolute;
+            top: 100px;
+            right: 100px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 999; /* Coloquei um z-index maior para garantir que o formulário esteja acima dos outros elementos */
+        }
+        .login-form h2 {
+            color: #2980b9;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .login-form input[type="submit"] {
+            width: 100%;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .login-form input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        /* Estilos para telas menores */
+        @media screen and (max-width: 600px) {
+            .login-btn,
+            .inventory-btn,
+            .cart-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 16px;
+                line-height: 50px;
+            }
+            .login-info {
+                top: 100px;
+                right: 20px;
+            }
+            .login-form {
+                top: 100px;
+                right: 20px;
+            }
+            .cart-btn {
+                top: 220px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Botão de login -->
+    <div class="login-btn" onclick="toggleLoginForm()">Login</div>
+    <!-- Informação de login -->
+    <div class="login-info">
+        <p>Para solicitar itens, faça o login</p>
+    </div>
+
+    <!-- Formulário de login -->
+    <div class="login-form" id="login-form">
+        <h2>Login</h2>
+        <form>
+            <input type="text" placeholder="Usuário">
+            <input type="password" placeholder="Senha">
+            <input type="submit" value="Entrar">
+        </form>
+        <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+    </div>
+
+    <!-- Botão de inventário de itens -->
+    <a href="relatorio.html" class="btn inventory-btn">Inventário</a>
+
+    <!-- Botão de carrinho de compras -->
+    <div class="cart-btn" onclick="toggleCart()">Carrinho</div>
+
+    <div class="container">
+        <h1>Itens Disponíveis</h1>
+
+        <!-- Setores -->
+        <div class="painel">
+            <a href="estoque-mesas-escrivaninhas.html" class="setor">Mesas e Escrivaninhas</a>
+            <a href="estoque-cadeiras-girat-fixas.html" class="setor">Cadeiras Girat. e Fixas</a>
+            <a href="estoque-armarios-balcones.html" class="setor">Armários e Balcões</a>
+            <a href="estoque-carteiras-cadeiras-escola.html" class="setor">Carteiras Cadeiras Escola</a>
+            <a href="estoque-disp-cursos-senai.html" class="setor">Equipamentos cursos SENAI</a>
+            <a href="estoque-equip-sesi-academias.html" class="setor">SESI Academias</a>
+            <a href="estoque-equipamentos-farmacias.html" class="setor">Equipamentos GEFAN</a>
+            <a href="estoque-equipamentos-ti.html" class="setor">Equipamentos de T.I</a>
+            <a href="estoque-veiculos.html" class="setor">Veículos</a>
+            <a href="estoque-educacao-4-0.html" class="setor">Educação 4.0</a>
+            <a href="estoque-ar-condicionado.html" class="setor">Ar condicionado</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleLoginForm() {
+            var loginForm = document.getElementById("login-form");
+            if (loginForm.style.display === "none") {
+                loginForm.style.display = "block";
+            } else {
+                loginForm.style.display = "none";
+            }
+        }
+
+        // Função para alternar visibilidade do carrinho de compras
+        function toggleCart() {
+            var cart = document.getElementById("cart");
+            if (cart.style.display === "none") {
+                cart.style.display = "block";
+            } else {
+                cart.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

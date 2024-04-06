@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens Disponíveis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2980b9; /* Cor azul */
+            color: #000; /* Cor do texto preta */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2980b9; /* Cor azul */
+        }
+        .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .search-container input[type=text] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 60%;
+            margin-right: 10px;
+            box-sizing: border-box;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #4caf50; /* Cor verde */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background-color: #45a049; /* Tom mais escuro de verde ao passar o mouse */
+        }
+        .item {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .item img {
+            width: 100px;
+            height: auto;
+            float: left;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+        .item-details {
+            margin-top: 10px;
+        }
+        .plaqueta {
+            font-weight: bold;
+            color: #2980b9; /* Cor azul */
+        }
+        .descricao {
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .opcao-carrinho {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #4caf50; /* Cor verde */
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .opcao-carrinho:hover {
+            background-color: #45a049; /* Tom mais escuro de verde ao passar o mouse */
+        }
+        .disponibilidade {
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555; /* Cor cinza */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Itens Disponíveis Ar Condicionado</h1>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar por nome...">
+            <button onclick="searchItem()">Buscar</button>
+        </div>
+
+        <div class="item">
+            <img src="./notebook.PNG" alt="Exemplo Imagem 1">
+            <div class="item-details">
+                <h2>Notebook Dell Inspiron 15</h2>
+                <span class="plaqueta">SN 12345</span><br>
+                <span class="descricao">Processador Intel Core i5, 8GB de RAM, 512GB SSD, tela de 15.6 polegadas.</span><br>
+                <span class="disponibilidade">Disponível no estoque - Quantidade: 10</span><br>
+                <button class="opcao-carrinho">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="./monitor.PNG" alt="Exemplo Imagem 2">
+            <div class="item-details">
+                <h2>Monitor LG UltraWide</h2>
+                <span class="plaqueta">SN 54321</span><br>
+                <span class="descricao">Resolução 3440x1440, HDR10, AMD FreeSync.</span><br>
+                <span class="disponibilidade">Disponível no estoque - Quantidade: 5</span><br>
+                <button class="opcao-carrinho">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="./CPU.PNG" alt="Exemplo Imagem 4">
+            <div class="item-details">
+                <h2>Desktop</h2>
+                <span class="plaqueta">SS 24680</span><br>
+                <span class="descricao">Sensor HERO 16K, 11 botões programáveis, pesos ajustáveis.</span><br>
+                <span class="disponibilidade">Disponível no estoque - Quantidade: 15</span><br>
+                <button class="opcao-carrinho">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="./ROTEADOR.PNG" alt="Exemplo Imagem 5">
+            <div class="item-details">
+                <h2>Roteador D-Link EXO</h2>
+                <span class="plaqueta">SN13579</span><br>
+                <span class="descricao">Wireless AC 3000Mbps com sistema MESH, comandos de voz Google/Alexa + FOTA.</span><br>
+                <span class="disponibilidade">Disponível no estoque - Quantidade: 8</span><br>
+                <button class="opcao-carrinho">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function searchItem() {
+            var input, filter, items, item, txtValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toUpperCase();
+            items = document.getElementsByClassName('item');
+            
+            for (var i = 0; i < items.length; i++) {
+                item = items[i].getElementsByClassName('item-details')[0];
+                txtValue = item.textContent || item.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    items[i].style.display = '';
+                } else {
+                    items[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

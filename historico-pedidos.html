@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Pedidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Cor de fundo cinza claro */
+            color: #000; /* Cor do texto preta */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2980b9; /* Cor azul */
+        }
+        .pedido {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .pedido-details {
+            margin-top: 10px;
+        }
+        .plaqueta {
+            font-weight: bold;
+            color: #2980b9; /* Cor azul */
+        }
+        .descricao {
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .status-aceito {
+            color: #4caf50; /* Cor verde */
+            font-weight: bold;
+        }
+        .status-rejeitado {
+            color: #f44336; /* Cor vermelha */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Histórico de Pedidos</h1>
+
+        <div class="pedido">
+            <div class="pedido-details">
+                <h2>Pedido #001</h2>
+                <span class="plaqueta">Cliente: João Silva</span><br>
+                <span class="descricao">Produto: Notebook Dell Inspiron 15 - SN 12345</span><br>
+                <span class="descricao">Quantidade: 1</span><br>
+                <span class="descricao">Data do Pedido: 02/04/2024</span><br>
+                <span class="descricao">Status: <span class="status-aceito">Aceito</span></span><br>
+            </div>
+        </div>
+
+        <div class="pedido">
+            <div class="pedido-details">
+                <h2>Pedido #002</h2>
+                <span class="plaqueta">Cliente: Maria Oliveira</span><br>
+                <span class="descricao">Produto: Monitor LG UltraWide - SN 54321</span><br>
+                <span class="descricao">Quantidade: 2</span><br>
+                <span class="descricao">Data do Pedido: 03/04/2024</span><br>
+                <span class="descricao">Status: <span class="status-rejeitado">Rejeitado</span></span><br>
+            </div>
+        </div>
+
+        <!-- Adicione mais pedidos aqui conforme necessário -->
+    </div>
+</body>
+</html>
