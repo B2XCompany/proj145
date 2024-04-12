@@ -6,11 +6,12 @@ class Produtos{
     // vai ser executado quando a classe for iniciada
     constructor(){
         this.data = []
-        getItemData(this.id)
+        this.filterData = ''
+        getAllItems()
     }
 
     static getAllItems(){
-        let url = 'sys/api/getData.php';
+        let url = 'sys/api/getData.php?setor=' + this.filterData;
         // enviar requisição para getData.php
         return fetch(url)
         // retornando resposta do getData.php
@@ -30,39 +31,24 @@ class Produtos{
                 this.data.push(obj);
             }
             // criar header e depois criar os elementos de dentro da tabela
-            this.createHeader(this.data[0])
-            .then(this.createItemsDiv(this.data))
+            this.createItemsDiv(this.data)
         })
     }
 
     // função para criar os elementos da tabela
-    createItemsDiv(data){
-        this.createHeader(data[0])
-        .then(e=>{
-            for(let i of data){
-                // criar linha
-                let tr = document.createElement('tr');
-                for(let value of Object.values(i)){
-                    // criar celula
-                    let td = document.createElement('td');
-                    td.innerText = value;
-                    tr.append(td);
-                }
-                tabelaProdutos.append(tr);
+    static createItemsDiv(data){
+        for(let item of data){
+            // criar linha
+            let div = document.createElement('div');
+            for(let value of Object.values(item)){
+                // criar celula
+                let div2 = document.createElement('div');
+                div2.innerText = value;
+                tr.append(td);
             }
-            return; // criar lista de itens
-        })
-    }
-
-    // 
-    createHeader(data){
-        let th = document.createElement("th");
-        for(let key of Object.keys(i)){
-            let td = document.createElement("td");
-            td.innerText = key
-            th.append(td);
+            tabelaProdutos.append(div);
         }
-        tabelaProdutos.append(th);
+        return; // criar lista de itens
     }
 
     // declarando função para ser usada nas classes filhas

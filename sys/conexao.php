@@ -145,6 +145,7 @@ function converterHora($time){
 }
 
 
+# função para checar se a query, se bool for verdadeiro se espera que existe elementos no banco de dados, e o inverso para falso, se não ocorrer o código será parado
 function existsQuery($__CONEXAO__, $query, $string, $bool){
     if($bool){
         if(mysqli_num_rows($query) < 1){
