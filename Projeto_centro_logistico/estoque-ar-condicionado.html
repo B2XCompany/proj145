@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itens Disponíveis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -90,11 +91,27 @@
             font-size: 0.9em;
             color: #555; /* Cor cinza */
         }
+        .cart-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .cart-btn:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Veículos Disponiveis</h1>
+        <h1>Itens Disponíveis Ar Condicionado</h1>
 
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Buscar por nome...">
@@ -145,6 +162,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Botão de carrinho de compras -->
+    <a href="carrinho.html" class="cart-btn" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i> <!-- Ícone do carrinho de compras -->
+    </a>
 
     <script>
         function searchItem() {

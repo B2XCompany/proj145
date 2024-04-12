@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração de Pedidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Cor de fundo cinza claro */
+            color: #000; /* Cor do texto preta */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto; /* Centraliza o container horizontalmente */
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Para posicionar o status */
+        }
+        h1 {
+            text-align: center;
+            color: #2980b9; /* Cor azul */
+        }
+        .pedido {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative; /* Para posicionar os botões */
+        }
+        .pedido-details {
+            margin-top: 10px;
+        }
+        .plaqueta {
+            font-weight: bold;
+            color: #2980b9; /* Cor azul */
+        }
+        .descricao {
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .opcao-visualizar, .opcao-imprimir, .opcao-aceitar, .opcao-rejeitar, .opcao-preparar-envio, .opcao-enviar {
+            padding: 5px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            text-decoration: none;
+            position: absolute; /* Posição absoluta para os botões */
+            bottom: 10px; /* Espaçamento inferior */
+        }
+        .opcao-visualizar {
+            background-color: #3498db; /* Cor azul */
+            color: #fff;
+            left: 10px; /* Posição à esquerda */
+        }
+        .opcao-visualizar:hover {
+            background-color: #2980b9; /* Tom mais escuro de azul ao passar o mouse */
+        }
+        .opcao-imprimir {
+            background-color: #f39c12; /* Cor laranja */
+            color: #fff;
+            left: 140px; /* Posição à esquerda */
+        }
+        .opcao-imprimir:hover {
+            background-color: #d35400; /* Tom mais escuro de laranja ao passar o mouse */
+        }
+        .opcao-aceitar {
+            background-color: #2ecc71; /* Cor verde */
+            color: #fff;
+            left: 270px; /* Posição à esquerda */
+        }
+        .opcao-aceitar:hover {
+            background-color: #27ae60; /* Tom mais escuro de verde ao passar o mouse */
+        }
+        .opcao-rejeitar {
+            background-color: #e74c3c; /* Cor vermelha */
+            color: #fff;
+            left: 400px; /* Posição à esquerda */
+        }
+        .opcao-rejeitar:hover {
+            background-color: #c0392b; /* Tom mais escuro de vermelho ao passar o mouse */
+        }
+        .opcao-preparar-envio {
+            background-color: #9b59b6; /* Cor roxa */
+            color: #fff;
+            left: 530px; /* Posição à esquerda */
+        }
+        .opcao-preparar-envio:hover {
+            background-color: #8e44ad; /* Tom mais escuro de roxo ao passar o mouse */
+        }
+        .opcao-enviar {
+            background-color: #3498db; /* Cor azul */
+            color: #fff;
+            left: 660px; /* Posição à esquerda */
+        }
+        .opcao-enviar:hover {
+            background-color: #2980b9; /* Tom mais escuro de azul ao passar o mouse */
+        }
+        .status {
+            position: absolute; /* Posição absoluta para o status */
+            top: 10px; /* Espaçamento superior */
+            right: 10px; /* Posição à direita */
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .status-aguardando-aceite {
+            background-color: #f1c40f; /* Amarelo */
+            color: #000;
+        }
+        .status-itens-preparados {
+            background-color: #3498db; /* Azul */
+            color: #fff;
+        }
+        .status-itens-enviados {
+            background-color: #2ecc71; /* Verde */
+            color: #fff;
+        }
+        .status-pedido-entregue {
+            background-color: #27ae60; /* Verde */
+            color: #fff;
+        }
+        .campo-busca {
+            margin-bottom: 20px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 100%;
+            box-sizing: border-box; /* Para incluir padding e border na largura total */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Administração de Pedidos</h1>
+
+        <!-- Campo de busca de pedidos -->
+        <input type="text" class="campo-busca" placeholder="Buscar pedidos...">
+
+        <!-- Exemplo de Pedido #001 -->
+        <div class="pedido">
+            <div class="pedido-details">
+                <h2>Pedido #001</h2>
+                <span class="plaqueta">Cliente: João Silva</span><br>
+                <span class="descricao">Mouse Logitech G502</span><br>
+                <span class="descricao">Quantidade: 2</span><br>
+                <span class="descricao">Filial Destino: Filial A</span><br>
+                <span class="descricao">Localização Destino: A-101</span><br>
+                <span class="descricao">Data do Pedido: 02/04/2024</span><br>
+                <div class="opcao-centralizar">
+                    <button class="opcao-visualizar">Visualizar</button>
+                    <button class="opcao-imprimir" style="display: none;">Imprimir</button>
+                    <button class="opcao-aceitar">Aceitar Pedido</button>
+                    <button class="opcao-rejeitar">Rejeitar Pedido</button>
+                </div>
+                <div class="itens-pedido" style="display: none;">
+                    <h3>Itens do Pedido</h3>
+                    <ul>
+                        <li>Mouse Logitech G502</li>
+                        <li>Teclado Mecânico Redragon K552</li>
+                    </ul>
+                </div>
+                <span class="status status-aguardando-aceite">Status: Aguardando Aceite</span><br>
+            </div>
+        </div>
+
+        <!-- Botão para verificar histórico de pedidos -->
+        <a href="historico-pedidos.html" class="historico-link">Verificar Histórico de Pedidos</a>
+    </div>
+
+    <script>
+        // Seleciona todos os botões "Aceitar Pedido"
+        const botoesAceitar = document.querySelectorAll('.opcao-aceitar');
+
+        // Adiciona um event listener para cada botão "Aceitar Pedido"
+        botoesAceitar.forEach(botao => {
+            botao.addEventListener('click', function() {
+                const pedido = this.closest('.pedido');
+                const status = pedido.querySelector('.status');
+                status.textContent = 'Itens sendo preparados para envio';
+                botao.textContent = 'Enviar Itens';
+                botao.classList.remove('opcao-aceitar');
+                botao.classList.add('opcao-preparar-envio');
+                status.classList.remove('status-aguardando-aceite');
+                status.classList.add('status-itens-preparados');
+            });
+        });
+
+        // Seleciona todos os botões "Enviar Itens"
+        const botoesEnviarItens = document.querySelectorAll('.opcao-preparar-envio');
+
+        // Adiciona um event listener para cada botão "Enviar Itens"
+        botoesEnviarItens.forEach(botao => {
+            botao.addEventListener('click', function() {
+                const pedido = this.closest('.pedido');
+                const status = pedido.querySelector('.status');
+                status.textContent = 'Pedido enviado';
+                botao.style.display = 'none';
+                status.classList.remove('status-itens-preparados');
+                status.classList.add('status-itens-enviados');
+                const botaoRejeitar = pedido.querySelector('.opcao-rejeitar');
+                botaoRejeitar.style.display = 'none';
+                const botaoEnviar = document.createElement('button');
+                botaoEnviar.textContent = 'Enviar';
+                botaoEnviar.classList.add('opcao-enviar');
+                botaoEnviar.addEventListener('click', function() {
+                    status.textContent = 'Pedido entregue';
+                    botaoEnviar.style.display = 'none';
+                    status.classList.remove('status-itens-enviados');
+                    status.classList.add('status-pedido-entregue');
+                });
+                const divOpcoes = pedido.querySelector('.opcao-centralizar');
+                divOpcoes.appendChild(botaoEnviar);
+            });
+        });
+
+        // Seleciona todos os botões "Rejeitar Pedido"
+        const botoesRejeitar = document.querySelectorAll('.opcao-rejeitar');
+
+        // Adiciona um event listener para cada botão "Rejeitar Pedido"
+        botoesRejeitar.forEach(botao => {
+            botao.addEventListener('click', function() {
+                const pedido = this.closest('.pedido');
+                pedido.style.display = 'none';
+            });
+        });
+
+        // Seleciona todos os botões "Visualizar"
+        const botoesVisualizar = document.querySelectorAll('.opcao-visualizar');
+
+        // Adiciona um event listener para cada botão "Visualizar"
+        botoesVisualizar.forEach(botao => {
+            botao.addEventListener('click', function() {
+                const itensPedido = this.closest('.pedido').querySelector('.itens-pedido');
+                if (itensPedido.style.display === 'none') {
+                    itensPedido.style.display = 'block';
+                } else {
+                    itensPedido.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

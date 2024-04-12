@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens Cadastrados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Cor de fundo cinza claro */
+            color: #000; /* Cor do texto preto */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2980b9; /* Cor azul */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2; /* Cor de fundo cinza claro */
+        }
+        .btn-action {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+        .btn-action:hover {
+            background-color: #45a049;
+        }
+        .btn-save {
+            background-color: #2196F3;
+        }
+        .btn-save:hover {
+            background-color: #0b7dda;
+        }
+        .filtro {
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .filtro label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .filtro input[type="text"] {
+            width: calc(50% - 10px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            float: left;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Itens Cadastrados</h1>
+
+        <div class="filtro">
+            <label for="busca">Buscar Item:</label>
+            <input type="text" name="busca" id="busca" placeholder="Digite o nome do item" oninput="filtrarItens()">
+        </div>
+
+        <table id="tabela-itens">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Entidade</th>
+                    <th>Plaqueta</th>
+                    <th>Quantidade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td contenteditable="true">Mesa de escritório</td>
+                    <td contenteditable="true">SENAI</td>
+                    <td contenteditable="true">123456</td>
+                    <td contenteditable="true">5</td>
+                    <td>
+                        <button class="btn-action editar">Editar</button>
+                        <button class="btn-action excluir">Excluir</button>
+                        <button class="btn-action btn-save" style="display: none;">Salvar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Cadeira Giratória</td>
+                    <td contenteditable="true">FIESC</td>
+                    <td contenteditable="true">123457</td>
+                    <td contenteditable="true">10</td>
+                    <td>
+                        <button class="btn-action editar">Editar</button>
+                        <button class="btn-action excluir">Excluir</button>
+                        <button class="btn-action btn-save" style="display: none;">Salvar</button>
+                    </td>
+                </tr>
+                <!-- Adicione mais linhas conforme necessário -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filtrarItens() {
+            var input = document.getElementById("busca");
+            var filter = input.value.toUpperCase();
+            var table = document.getElementById("tabela-itens");
+            var tbody = table.getElementsByTagName("tbody")[0];
+            var tr = tbody.getElementsByTagName("tr");
+
+            for (var i = 0; i < tr.length; i++) {
+                var td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    var textValue = td.textContent || td.innerText;
+                    if (textValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const editarButtons = document.querySelectorAll(".editar");
+            const excluirButtons = document.querySelectorAll(".excluir");
+            const saveButtons = document.querySelectorAll(".btn-save");
+
+            // Adicionando eventos de clique aos botões
+            editarButtons.forEach((button, index) => {
+                button.addEventListener("click", () => {
+                    toggleEdit(index);
+                });
+            });
+
+            excluirButtons.forEach((button, index) => {
+                button.addEventListener("click", () => {
+                    excluirItem(index);
+                });
+            });
+
+            saveButtons.forEach((button, index) => {
+                button.addEventListener("click", () => {
+                    salvarItem(index);
+                });
+            });
+
+            function toggleEdit(index) {
+                const row = document.querySelectorAll("tbody tr")[index];
+                const editButtons = row.querySelectorAll(".editar");
+                const saveButtons = row.querySelectorAll(".btn-save");
+                editButtons.forEach(button => {
+                    button.style.display = "none";
+                });
+                saveButtons.forEach(button => {
+                    button.style.display = "inline-block";
+                });
+                const cells = row.querySelectorAll("td[contenteditable]");
+                cells.forEach(cell => {
+                    cell.setAttribute("contenteditable", "true");
+                });
+            }
+
+            function salvarItem(index) {
+                const row = document.querySelectorAll("tbody tr")[index];
+                const saveButtons = row.querySelectorAll(".btn-save");
+                saveButtons.forEach(button => {
+                    button.style.display = "none";
+                });
+                const editButtons = row.querySelectorAll(".editar");
+                editButtons.forEach(button => {
+                    button.style.display = "inline-block";
+                });
+                const cells = row.querySelectorAll("td[contenteditable]");
+                cells.forEach(cell => {
+                    cell.setAttribute("contenteditable", "false");
+                });
+            }
+
+            function excluirItem(index) {
+                const row = document.querySelectorAll("tbody tr")[index];
+                row.remove();
+            }
+        });
+    </script>
+</body>
+</html>

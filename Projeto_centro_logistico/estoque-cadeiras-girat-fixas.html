@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itens Disponíveis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -90,11 +90,32 @@
             font-size: 0.9em;
             color: #555; /* Cor cinza */
         }
+        .cart-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .cart-btn:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
+    <a href="carrinho.html" class="cart-btn">
+        <i class="fas fa-shopping-cart"></i> <!-- Ícone do carrinho de compras -->
+    </a>
+    
     <div class="container">
-        <h1>Itens educação 4.0</h1>
+        <h1>Cadeiras Giratórias e Fixas para Escritório</h1>
 
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Buscar por nome...">
@@ -102,44 +123,44 @@
         </div>
 
         <div class="item">
-            <img src="./notebook.PNG" alt="Exemplo Imagem 1">
+            <img src="./cadeira_giratoria.jpg" alt="Exemplo Imagem 1">
             <div class="item-details">
-                <h2>Notebook Dell Inspiron 15</h2>
+                <h2>Cadeira Giratória Ergonômica</h2>
                 <span class="plaqueta">SN 12345</span><br>
-                <span class="descricao">Processador Intel Core i5, 8GB de RAM, 512GB SSD, tela de 15.6 polegadas.</span><br>
+                <span class="descricao">Cadeira giratória ergonômica com apoio lombar ajustável.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 10</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>
         </div>
 
         <div class="item">
-            <img src="./monitor.PNG" alt="Exemplo Imagem 2">
+            <img src="./cadeira_fixa.jpg" alt="Exemplo Imagem 2">
             <div class="item-details">
-                <h2>Monitor LG UltraWide</h2>
+                <h2>Cadeira Fixa para Escritório</h2>
                 <span class="plaqueta">SN 54321</span><br>
-                <span class="descricao">Resolução 3440x1440, HDR10, AMD FreeSync.</span><br>
+                <span class="descricao">Cadeira fixa para escritório com estrutura resistente e estofamento confortável.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 5</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>
         </div>
 
         <div class="item">
-            <img src="./CPU.PNG" alt="Exemplo Imagem 4">
+            <img src="./cadeira_executiva.jpg" alt="Exemplo Imagem 3">
             <div class="item-details">
-                <h2>Desktop</h2>
+                <h2>Cadeira Executiva Premium</h2>
                 <span class="plaqueta">SS 24680</span><br>
-                <span class="descricao">Sensor HERO 16K, 11 botões programáveis, pesos ajustáveis.</span><br>
+                <span class="descricao">Cadeira executiva com design premium e ajustes múltiplos de altura e inclinação.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 15</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>
         </div>
 
         <div class="item">
-            <img src="./ROTEADOR.PNG" alt="Exemplo Imagem 5">
+            <img src="./cadeira_escritorio.jpg" alt="Exemplo Imagem 4">
             <div class="item-details">
-                <h2>Roteador D-Link EXO</h2>
+                <h2>Cadeira de Escritório Estofada</h2>
                 <span class="plaqueta">SN13579</span><br>
-                <span class="descricao">Wireless AC 3000Mbps com sistema MESH, comandos de voz Google/Alexa + FOTA.</span><br>
+                <span class="descricao">Cadeira de escritório estofada com rodízios e braços ajustáveis.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 8</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>

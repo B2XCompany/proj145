@@ -50,12 +50,59 @@
             color: #f44336; /* Cor vermelha */
             font-weight: bold;
         }
+        .campo-busca {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .campo-busca input[type="text"] {
+            padding: 8px;
+            width: 60%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .campo-busca button {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            background-color: #3498db; /* Cor azul */
+            color: #fff;
+            cursor: pointer;
+        }
+        .itens-pedido {
+            margin-top: 10px;
+        }
+        .itens-pedido ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .itens-pedido li {
+            margin-bottom: 5px;
+        }
+        .opcao-visualizar {
+            background-color: #3498db; /* Cor azul */
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .opcao-visualizar:hover {
+            background-color: #2980b9; /* Tom mais escuro de azul ao passar o mouse */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Histórico de Pedidos</h1>
 
+        <!-- Campo de busca -->
+        <div class="campo-busca">
+            <input type="text" placeholder="Buscar pedidos...">
+            <button>Buscar</button>
+        </div>
+
+        <!-- Exemplo de Pedido #001 -->
         <div class="pedido">
             <div class="pedido-details">
                 <h2>Pedido #001</h2>
@@ -64,9 +111,17 @@
                 <span class="descricao">Quantidade: 1</span><br>
                 <span class="descricao">Data do Pedido: 02/04/2024</span><br>
                 <span class="descricao">Status: <span class="status-aceito">Aceito</span></span><br>
+                <button class="opcao-visualizar">Visualizar Itens</button>
+                <div class="itens-pedido" style="display: none;">
+                    <h3>Itens do Pedido</h3>
+                    <ul>
+                        <li>Notebook Dell Inspiron 15</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
+        <!-- Exemplo de Pedido #002 -->
         <div class="pedido">
             <div class="pedido-details">
                 <h2>Pedido #002</h2>
@@ -75,10 +130,34 @@
                 <span class="descricao">Quantidade: 2</span><br>
                 <span class="descricao">Data do Pedido: 03/04/2024</span><br>
                 <span class="descricao">Status: <span class="status-rejeitado">Rejeitado</span></span><br>
+                <button class="opcao-visualizar">Visualizar Itens</button>
+                <div class="itens-pedido" style="display: none;">
+                    <h3>Itens do Pedido</h3>
+                    <ul>
+                        <li>Monitor LG UltraWide</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <!-- Adicione mais pedidos aqui conforme necessário -->
     </div>
+
+    <script>
+        // Seleciona todos os botões "Visualizar Itens"
+        const botoesVisualizar = document.querySelectorAll('.opcao-visualizar');
+
+        // Adiciona um event listener para cada botão "Visualizar Itens"
+        botoesVisualizar.forEach(botao => {
+            botao.addEventListener('click', function() {
+                const itensPedido = this.closest('.pedido').querySelector('.itens-pedido');
+                if (itensPedido.style.display === 'none') {
+                    itensPedido.style.display = 'block';
+                } else {
+                    itensPedido.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

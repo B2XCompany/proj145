@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Inventário</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Cor de fundo cinza claro */
+            color: #000; /* Cor do texto preto */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2980b9; /* Cor azul */
+        }
+        .filtro {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .filtro label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .filtro select, .filtro input[type="date"], .filtro input[type="email"] {
+            width: calc(33.33% - 10px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            float: left;
+            margin-right: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2; /* Cor de fundo cinza claro */
+        }
+        .total {
+            font-weight: bold;
+        }
+        .btn-action {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            float: right;
+        }
+        .btn-action:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Relatório de Inventário</h1>
+
+        <div class="filtro">
+            <label for="setor">Selecione o Setor:</label>
+            <select name="setor" id="setor" onchange="filtrarItens()">
+                <option value="">Todos os Setores</option>
+                <option value="mesas-escrivaninhas">Mesas e Escrivaninhas</option>
+                <option value="cadeiras">Cadeiras Girat. e Fixas</option>
+                <option value="armarios-balcones">Armários e Balcões</option>
+                <option value="carteiras-cadeiras-escola">Carteiras Cadeiras Escola</option>
+                <option value="disp-cursos-senai">DISP - Equip. Negócio cursos SENAI</option>
+                <option value="equip-sesi-academias">Equip. Negócio SESI ACADEMIAS</option>
+                <option value="equipamentos-farmacias">Equipamentos FARMACIAS</option>
+                <option value="equipamentos-ti">Equipamentos de TI</option>
+                <option value="veiculos">Veículos</option>
+                <option value="educacao-4.0">Educação 4.0</option>
+                <option value="ar-condicionado">AR CONDICIONADO</option>
+            </select>
+
+            <label for="inicio">Data Inicial:</label>
+            <input type="date" name="inicio" id="inicio">
+
+            <label for="fim">Data Final:</label>
+            <input type="date" name="fim" id="fim">
+
+            <label for="email">Email para envio:</label>
+            <input type="email" name="email" id="email">
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Entidade</th>
+                    <th>Plaqueta</th>
+                    <th>Quantidade</th>
+                    <th>Filial</th>
+                    <th>Localização</th>
+                </tr>
+            </thead>
+            <tbody id="dados-inventario">
+                <!-- Aqui serão adicionados os dados do inventário -->
+            </tbody>
+        </table>
+
+        <button id="gerar-relatorio" class="btn-action" onclick="gerarRelatorio()">Gerar Relatório</button>
+        <button id="enviar-email" class="btn-action" onclick="enviarEmail()">Enviar por Email</button>
+    </div>
+
+    <script>
+        function filtrarItens() {
+            var setorSelecionado = document.getElementById("setor").value;
+            var dadosInventario = document.getElementById("dados-inventario");
+
+            // Limpa os dados existentes
+            dadosInventario.innerHTML = "";
+
+            // Adiciona os dados de exemplo para o setor selecionado
+            switch (setorSelecionado) {
+                case "mesas-escrivaninhas":
+                    adicionarItem("Mesa de escritório", "SENAI", "123456", 5, "Filial A", "Sala 101");
+                    break;
+                case "cadeiras":
+                    adicionarItem("Cadeira Giratória", "FIESC", "123457", 10, "Filial B", "Sala 102");
+                    break;
+                case "armarios-balcones":
+                    adicionarItem("Armário de Aço", "SESI", "123458", 3, "Filial C", "Sala 103");
+                    break;
+                case "carteiras-cadeiras-escola":
+                    adicionarItem("Carteira Escolar", "SENAI", "123459", 20, "Filial D", "Sala 104");
+                    break;
+                case "disp-cursos-senai":
+                    adicionarItem("Projetor Multimídia", "SENAI", "123460", 2, "Filial E", "Sala 105");
+                    break;
+                case "equip-sesi-academias":
+                    adicionarItem("Esteira Ergométrica", "SESI", "123461", 1, "Filial F", "Sala 106");
+                    break;
+                case "equipamentos-farmacias":
+                    adicionarItem("Balança Digital", "FIESC", "123462", 4, "Filial G", "Sala 107");
+                    break;
+                case "equipamentos-ti":
+                    adicionarItem("Notebook Dell", "SENAI", "123463", 6, "Filial H", "Sala 108");
+                    break;
+                case "veiculos":
+                    adicionarItem("Caminhão Mercedes-Benz", "FIESC", "123464", 1, "Filial I", "Sala 109");
+                    break;
+                case "educacao-4.0":
+                    adicionarItem("Impressora 3D", "SENAI", "123465", 2, "Filial J", "Sala 110");
+                    break;
+                case "ar-condicionado":
+                    adicionarItem("Ar-Condicionado Split", "FIESC", "123466", 5, "Filial K", "Sala 111");
+                    break;
+                case "":
+                    // Mostrar todos os itens para todos os setores
+                    adicionarItem("Mesa de escritório", "SENAI", "123456", 5, "Filial A", "Sala 101");
+                    adicionarItem("Cadeira Giratória", "FIESC", "123457", 10, "Filial B", "Sala 102");
+                    adicionarItem("Armário de Aço", "SESI", "123458", 3, "Filial C", "Sala 103");
+                    adicionarItem("Carteira Escolar", "SENAI", "123459", 20, "Filial D", "Sala 104");
+                    adicionarItem("Projetor Multimídia", "SENAI", "123460", 2, "Filial E", "Sala 105");
+                    adicionarItem("Esteira Ergométrica", "SESI", "123461", 1, "Filial F", "Sala 106");
+                    adicionarItem("Balança Digital", "FIESC", "123462", 4, "Filial G", "Sala 107");
+                    adicionarItem("Notebook Dell", "SENAI", "123463", 6, "Filial H", "Sala 108");
+                    adicionarItem("Caminhão Mercedes-Benz", "FIESC", "123464", 1, "Filial I", "Sala 109");
+                    adicionarItem("Impressora 3D", "SENAI", "123465", 2, "Filial J", "Sala 110");
+                    adicionarItem("Ar-Condicionado Split", "FIESC", "123466", 5, "Filial K", "Sala 111");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function adicionarItem(item, entidade, plaqueta, quantidade, filial, localizacao) {
+            var dadosInventario = document.getElementById("dados-inventario");
+            var newRow = dadosInventario.insertRow();
+            newRow.innerHTML = `
+                <td>${item}</td>
+                <td>${entidade}</td>
+                <td>${plaqueta}</td>
+                <td>${quantidade}</td>
+                <td>${filial}</td>
+                <td>${localizacao}</td>
+            `;
+        }
+
+        function gerarRelatorio() {
+            var doc = new jsPDF();
+            doc.autoTable({ html: '#dados-inventario' });
+            doc.save('relatorio_inventario.pdf');
+        }
+
+        function enviarEmail() {
+            var email = document.getElementById("email").value;
+
+            if (!email || !validateEmail(email)) {
+                alert("Por favor, insira um email válido.");
+                return;
+            }
+
+            // Lógica para enviar o email
+            alert("Email enviado para " + email);
+        }
+
+        function validateEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>

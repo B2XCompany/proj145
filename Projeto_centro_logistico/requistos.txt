@@ -1,0 +1,20 @@
+Requisitos funcionais:
+RF1: Administrador pode logar
+RF2: Administrador pode aprovar e negar pedidos
+RF3: Administrador pode cadastrar itens novos
+RF4: Administrador pode remover itens
+RF5: Administrador pode editar itens
+RF6: Administrador pode ver lista de itens
+RF7: Administrador pode ver lista de gerentes
+RF8: Administrador pode deletar contas
+RF9: Administrador pode ver lista de itens que já foram pegos
+RF10: Administrador pode gerar relatorio/enviar email
+RF11: Administrador pode sair da conta
+
+RF12: Gerente pode logar
+RF13: Gerente pode ver lista de itens
+RF14: Gerente pode colocar itens no carrinho
+RF15: Gerente pode realizar pedido
+RF16: Gerente pode cancelar pedido
+RF17: Gerente pode ver “meus itens”
+RF18: Gerente pode devolver itens

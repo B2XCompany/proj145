@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link para a biblioteca de ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <title>Itens Cadastrados</title>
     <style>
         body {
@@ -23,11 +25,14 @@
         }
         h1 {
             text-align: center;
-            color: #2980b9;
+            color: #800080; /* Cor roxa */
+            font-size: 32px; /* Tamanho da fonte aumentado */
+            margin-bottom: 20px; /* Adicionada margem inferior */
+            text-transform: uppercase; /* Transforma o texto para maiúsculo */
         }
         .setor {
             display: block;
-            background-color: #3498db;
+            background-color: #4caf50; /* Cor verde */
             color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -40,13 +45,19 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         .setor:hover {
-            background-color: #2980b9;
+            background-color: #45a049; /* Tom mais escuro de verde ao passar o mouse */
         }
         .setor:nth-child(odd) {
-            background-color: #e74c3c;
+            background-color: #2980b9; /* Cor azul */
         }
         .setor:nth-child(odd):hover {
-            background-color: #c0392b;
+            background-color: #6aa9d5; /* Azul mais claro ao passar o mouse */
+        }
+        .setor:nth-child(even) {
+            background-color: #4caf50; /* Cor verde */
+        }
+        .setor:nth-child(even):hover {
+            background-color: #45a049; /* Tom mais escuro de verde ao passar o mouse */
         }
         .btn {
             background-color: #3498db;
@@ -92,7 +103,7 @@
             right: 20px;
         }
         .cart-btn {
-            top: 180px;
+            top: 250px;
             right: 20px;
         }
         .login-info {
@@ -169,7 +180,7 @@
     <div class="login-btn" onclick="toggleLoginForm()">Login</div>
     <!-- Informação de login -->
     <div class="login-info">
-        <p>Para solicitar itens, faça o login</p>
+        <p></p>
     </div>
 
     <!-- Formulário de login -->
@@ -180,18 +191,13 @@
             <input type="password" placeholder="Senha">
             <input type="submit" value="Entrar">
         </form>
-        <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+        <p>Não tem uma conta? <a href="cadastro-senha.html">Cadastre-se</a></p>
     </div>
 
-    <!-- Botão de inventário de itens -->
-    <a href="relatorio.html" class="btn inventory-btn">Inventário</a>
-
-    <!-- Botão de carrinho de compras -->
-    <div class="cart-btn" onclick="toggleCart()">Carrinho</div>
+ 
 
     <div class="container">
-        <h1>Itens Disponíveis</h1>
-
+        <h1>OLX do CL</h1> <!-- Título estilizado -->
         <!-- Setores -->
         <div class="painel">
             <a href="estoque-mesas-escrivaninhas.html" class="setor">Mesas e Escrivaninhas</a>

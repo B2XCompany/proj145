@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Cor de fundo cinza claro */
+            color: #000; /* Cor do texto preta */
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .formulario {
+            width: 400px;
+            margin-right: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .usuarios-pendentes {
+            width: 200px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .usuarios-cadastrados {
+            width: 100%;
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2980b9; /* Cor azul */
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #2980b9; /* Cor azul */
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 3px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4caf50; /* Cor verde */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049; /* Tom mais escuro de verde ao passar o mouse */
+        }
+        .option-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .option-button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .option-button.accept {
+            background-color: #2980b9; /* Cor azul */
+            color: #fff;
+        }
+        .option-button.delete {
+            background-color: #f44336; /* Cor vermelha */
+            color: #fff;
+        }
+        .option-button.accept:hover {
+            background-color: #2c3e50; /* Tom mais escuro de azul ao passar o mouse */
+        }
+        .option-button.delete:hover {
+            background-color: #d32f2f; /* Tom mais escuro de vermelho ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="formulario">
+            <h1>Cadastro de Usuários</h1>
+            <form id="formulario">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+
+                <input type="submit" value="Cadastrar">
+            </form>
+        </div>
+        <div class="usuarios-pendentes">
+            <h2>Usuários Pendentes</h2>
+            <ul id="usuarios-pendentes">
+                <!-- Aqui serão listados os usuários pendentes -->
+            </ul>
+        </div>
+        <div class="usuarios-cadastrados">
+            <h2>Usuários Cadastrados</h2>
+            <ul id="usuarios-cadastrados">
+                <!-- Aqui serão listados os usuários cadastrados -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Função para simular a submissão do formulário
+        document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+
+            // Adiciona o usuário cadastrado à lista de usuários pendentes
+            adicionarUsuarioPendente(nome, email);
+
+            // Limpa os campos do formulário
+            document.getElementById('nome').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('senha').value = '';
+        });
+
+        // Função para adicionar um usuário à lista de usuários pendentes
+        function adicionarUsuarioPendente(nome, email) {
+            const listaUsuariosPendentes = document.getElementById('usuarios-pendentes');
+            const itemLista = document.createElement('li');
+            itemLista.textContent = `${nome} - ${email}`;
+            
+            const botaoAceitar = document.createElement('button');
+            botaoAceitar.textContent = 'Aceitar';
+            botaoAceitar.classList.add('option-button', 'accept');
+            botaoAceitar.addEventListener('click', function() {
+                // Remove o usuário da lista de usuários pendentes
+                itemLista.remove();
+                // Adiciona o usuário à lista de usuários cadastrados
+                adicionarUsuarioCadastrado(nome, email);
+            });
+
+            itemLista.appendChild(botaoAceitar);
+            listaUsuariosPendentes.appendChild(itemLista);
+        }
+
+        // Função para adicionar um usuário à lista de usuários cadastrados
+        function adicionarUsuarioCadastrado(nome, email) {
+            const listaUsuariosCadastrados = document.getElementById('usuarios-cadastrados');
+            const itemLista = document.createElement('li');
+            itemLista.textContent = `${nome} - ${email}`;
+            
+            const botaoExcluir = document.createElement('button');
+            botaoExcluir.textContent = 'Excluir';
+            botaoExcluir.classList.add('option-button', 'delete');
+            botaoExcluir.addEventListener('click', function() {
+                itemLista.remove();
+            });
+
+            // Botão para visualizar pedidos
+            const botaoVisualizarPedidos = document.createElement('button');
+            botaoVisualizarPedidos.textContent = 'Visualizar Pedidos';
+            botaoVisualizarPedidos.classList.add('option-button', 'view-orders');
+            botaoVisualizarPedidos.addEventListener('click', function() {
+                window.location.href = `pedidos_usuario.php?usuario=${email}`;
+            });
+
+            itemLista.appendChild(botaoExcluir);
+            itemLista.appendChild(botaoVisualizarPedidos);
+            listaUsuariosCadastrados.appendChild(itemLista);
+        }
+
+        // Exemplo de uso da função para adicionar um usuário
+        adicionarUsuarioCadastrado('João', 'joao@example.com');
+    </script>
+</body>
+</html>

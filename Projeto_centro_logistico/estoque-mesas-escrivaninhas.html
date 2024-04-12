@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itens Disponíveis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Itens Disponíveis - Mesas e Escrivaninhas</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -90,11 +91,28 @@
             font-size: 0.9em;
             color: #555; /* Cor cinza */
         }
+        .carrinho-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #3498db; /* Cor azul */
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Cadeiras Giratorias e fixas para escritório</h1>
+        <h1>Mesas e Escrivaninhas</h1>
 
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Buscar por nome...">
@@ -146,7 +164,16 @@
         </div>
     </div>
 
+    <button class="carrinho-btn" onclick="mostrarCarrinho()">
+        <i class="fas fa-shopping-cart"></i> <!-- Ícone do carrinho de compras -->
+    </button>
+
     <script>
+        function mostrarCarrinho() {
+            var carrinho = document.getElementById('carrinho');
+            carrinho.style.display = 'block';
+        }
+
         function searchItem() {
             var input, filter, items, item, txtValue;
             input = document.getElementById('searchInput');

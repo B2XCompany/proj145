@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itens Disponíveis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Itens Academias</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -90,11 +91,31 @@
             font-size: 0.9em;
             color: #555; /* Cor cinza */
         }
+        .cart-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #3498db; /* Cor azul */
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
+    <a href="carrinho.html" class="cart-btn">
+        <i class="fas fa-shopping-cart"></i> <!-- Ícone do carrinho de compras -->
+    </a>
     <div class="container">
-        <h1>Cursos SENAI</h1>
+        <h1>Itens Academias</h1>
 
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Buscar por nome...">
@@ -104,9 +125,9 @@
         <div class="item">
             <img src="./notebook.PNG" alt="Exemplo Imagem 1">
             <div class="item-details">
-                <h2>Notebook Dell Inspiron 15</h2>
+                <h2>Notebook Acer Aspire 5</h2>
                 <span class="plaqueta">SN 12345</span><br>
-                <span class="descricao">Processador Intel Core i5, 8GB de RAM, 512GB SSD, tela de 15.6 polegadas.</span><br>
+                <span class="descricao">Processador Intel Core i3, 4GB de RAM, 256GB SSD, tela de 15.6 polegadas.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 10</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>
@@ -115,9 +136,9 @@
         <div class="item">
             <img src="./monitor.PNG" alt="Exemplo Imagem 2">
             <div class="item-details">
-                <h2>Monitor LG UltraWide</h2>
+                <h2>Monitor LG 24MK600M</h2>
                 <span class="plaqueta">SN 54321</span><br>
-                <span class="descricao">Resolução 3440x1440, HDR10, AMD FreeSync.</span><br>
+                <span class="descricao">Resolução Full HD, 75Hz, AMD FreeSync.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 5</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>
@@ -126,9 +147,9 @@
         <div class="item">
             <img src="./CPU.PNG" alt="Exemplo Imagem 4">
             <div class="item-details">
-                <h2>Desktop</h2>
+                <h2>Desktop HP Pavilion Gaming TG01-0160xt</h2>
                 <span class="plaqueta">SS 24680</span><br>
-                <span class="descricao">Sensor HERO 16K, 11 botões programáveis, pesos ajustáveis.</span><br>
+                <span class="descricao">Intel Core i5, 8GB de RAM, 256GB SSD + 1TB HDD, NVIDIA GeForce GTX 1650.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 15</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>
@@ -137,9 +158,9 @@
         <div class="item">
             <img src="./ROTEADOR.PNG" alt="Exemplo Imagem 5">
             <div class="item-details">
-                <h2>Roteador D-Link EXO</h2>
+                <h2>Roteador TP-Link Archer C6</h2>
                 <span class="plaqueta">SN13579</span><br>
-                <span class="descricao">Wireless AC 3000Mbps com sistema MESH, comandos de voz Google/Alexa + FOTA.</span><br>
+                <span class="descricao">Dual Band AC1200, 4 antenas externas, Controle Parental, IPv6.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 8</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>

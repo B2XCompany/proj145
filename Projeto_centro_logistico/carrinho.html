@@ -49,6 +49,9 @@
             margin-top: 5px;
             font-style: italic;
         }
+        .disponibilidade {
+            font-weight: bold;
+        }
         .opcao-carrinho {
             display: inline-block;
             padding: 5px 10px;
@@ -100,8 +103,6 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-
-        /* Novo estilo para o link de histórico de pedidos */
         .opcao-historico {
             display: block;
             margin: 10px auto;
@@ -117,6 +118,15 @@
         .opcao-historico:hover {
             background-color: #1c6a8c; /* Tom mais escuro de azul ao passar o mouse */
         }
+        .container-pedido {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Inicia oculto */
+        }
     </style>
 </head>
 <body>
@@ -130,6 +140,10 @@
                 <span class="plaqueta">SN 12345</span><br>
                 <span class="descricao">Processador Intel Core i5, 8GB de RAM, 512GB SSD, tela de 15.6 polegadas.</span><br>
                 <span class="disponibilidade">Quantidade: 1</span><br>
+                <label for="filial_destino">Filial Destino:</label><br>
+                <input type="text" id="filial_destino" name="filial_destino" required><br>
+                <label for="localizacao_destino">Localização Destino:</label><br>
+                <input type="text" id="localizacao_destino" name="localizacao_destino" required><br>
                 <button class="opcao-retirar">Retirar do Carrinho</button>
             </div>
         </div>
@@ -141,19 +155,78 @@
                 <span class="plaqueta">SN 54321</span><br>
                 <span class="descricao">Resolução 3440x1440, HDR10, AMD FreeSync.</span><br>
                 <span class="disponibilidade">Quantidade: 2</span><br>
+                <label for="filial_destino">Filial Destino:</label><br>
+                <input type="text" id="filial_destino" name="filial_destino" required><br>
+                <label for="localizacao_destino">Localização Destino:</label><br>
+                <input type="text" id="localizacao_destino" name="localizacao_destino" required><br>
                 <button class="opcao-retirar">Retirar do Carrinho</button>
             </div>
         </div>
 
-        <!-- Adicione mais itens aqui conforme necessário -->
-
-        <form action="central_logistica.php" method="post">
-            <textarea name="mensagem" rows="4" placeholder="Digite sua mensagem para o centro logístico"></textarea><br>
-            <button class="opcao-pedido">Solicitar Pedido ao Centro Logístico</button>
+        <!-- Formulário para solicitar pedido ao centro logístico -->
+        <form id="pedidoForm" action="central_logistica.php" method="post">
+            <textarea name="mensagem" rows="4" placeholder="Digite sua mensagem para o centro logístico" required></textarea><br>
+            <button type="button" class="opcao-pedido">Solicitar Pedido ao Centro Logístico</button>
         </form>
 
         <!-- Botão para verificar histórico de pedidos -->
         <a href="historico-pedidos.html" class="opcao-historico">Verificar Histórico de Pedidos</a>
     </div>
+
+    <!-- Novo container para itens após realizar o pedido -->
+    <div class="container-pedido">
+        <h1>Pedidos em Aprovação</h1>
+        <ul id="pedidosAprovacao"></ul>
+    </div>
+
+    <script>
+        // Seleciona todos os botões "Retirar do Carrinho"
+        const botoesRetirar = document.querySelectorAll('.opcao-retirar');
+
+        // Adiciona um event listener para cada botão
+        botoesRetirar.forEach(botao => {
+            botao.addEventListener('click', function() {
+                // Remove o elemento pai (div.item) do botão clicado
+                this.closest('.item').remove();
+            });
+        });
+
+        // Seleciona o formulário de pedido
+        const formularioPedido = document.getElementById('pedidoForm');
+
+        // Adiciona um event listener para o formulário de pedido
+        formularioPedido.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+
+            // Adiciona a lógica para enviar o pedido ao centro logístico aqui
+            // Por exemplo:
+            // fetch('central_logistica.php', {
+            //     method: 'POST',
+            //     body: new FormData(this)
+            // })
+            // .then(response => {
+            //     if (response.ok) {
+            //         // Lógica para lidar com a resposta do servidor
+            //     } else {
+            //         throw new Error('Erro ao enviar pedido ao centro logístico');
+            //     }
+            // })
+            // .catch(error => {
+            //     console.error('Erro:', error);
+            // });
+
+            // Simula a adição de itens ao contêiner de pedidos em aprovação
+            const listaPedidos = document.getElementById('pedidosAprovacao');
+            const novoPedido = document.createElement('li');
+            novoPedido.textContent = 'Novo pedido em aprovação';
+            listaPedidos.appendChild(novoPedido);
+
+            // Exibe o contêiner de pedidos em aprovação
+            document.querySelector('.container-pedido').style.display = 'block';
+
+            // Limpa o formulário após o envio
+            this.reset();
+        });
+    </script>
 </body>
 </html>

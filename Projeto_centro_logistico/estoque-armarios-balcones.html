@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Itens Disponíveis</title>
     <style>
         body {
@@ -90,11 +91,32 @@
             font-size: 0.9em;
             color: #555; /* Cor cinza */
         }
+        .cart-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .cart-btn:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
+    <a href="carrinho.html" class="cart-btn" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i> <!-- Ícone do carrinho de compras -->
+    </a>
+    
     <div class="container">
-        <h1>Armários e balcões</h1>
+        <h1>Itens Disponíveis Armários e Balcões</h1>
 
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Buscar por nome...">
@@ -102,44 +124,44 @@
         </div>
 
         <div class="item">
-            <img src="./notebook.PNG" alt="Exemplo Imagem 1">
+            <img src="./armario_1.jpg" alt="Exemplo Imagem 1">
             <div class="item-details">
-                <h2>Notebook Dell Inspiron 15</h2>
+                <h2>Armário de Aço com 3 Portas</h2>
                 <span class="plaqueta">SN 12345</span><br>
-                <span class="descricao">Processador Intel Core i5, 8GB de RAM, 512GB SSD, tela de 15.6 polegadas.</span><br>
+                <span class="descricao">Armário de aço com 3 portas e prateleiras internas ajustáveis.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 10</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>
         </div>
 
         <div class="item">
-            <img src="./monitor.PNG" alt="Exemplo Imagem 2">
+            <img src="./balcao_1.jpg" alt="Exemplo Imagem 2">
             <div class="item-details">
-                <h2>Monitor LG UltraWide</h2>
+                <h2>Balcão de Escritório com Gavetas</h2>
                 <span class="plaqueta">SN 54321</span><br>
-                <span class="descricao">Resolução 3440x1440, HDR10, AMD FreeSync.</span><br>
+                <span class="descricao">Balcão de escritório com gavetas e espaço para guardar documentos.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 5</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>
         </div>
 
         <div class="item">
-            <img src="./CPU.PNG" alt="Exemplo Imagem 4">
+            <img src="./armario_2.jpg" alt="Exemplo Imagem 3">
             <div class="item-details">
-                <h2>Desktop</h2>
+                <h2>Armário de Madeira com Prateleiras</h2>
                 <span class="plaqueta">SS 24680</span><br>
-                <span class="descricao">Sensor HERO 16K, 11 botões programáveis, pesos ajustáveis.</span><br>
+                <span class="descricao">Armário de madeira com prateleiras internas e portas de correr.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 15</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>
         </div>
 
         <div class="item">
-            <img src="./ROTEADOR.PNG" alt="Exemplo Imagem 5">
+            <img src="./balcao_2.jpg" alt="Exemplo Imagem 4">
             <div class="item-details">
-                <h2>Roteador D-Link EXO</h2>
+                <h2>Balcão de Cozinha com Tampo de Granito</h2>
                 <span class="plaqueta">SN13579</span><br>
-                <span class="descricao">Wireless AC 3000Mbps com sistema MESH, comandos de voz Google/Alexa + FOTA.</span><br>
+                <span class="descricao">Balcão de cozinha com tampo de granito e várias gavetas.</span><br>
                 <span class="disponibilidade">Disponível no estoque - Quantidade: 8</span><br>
                 <button class="opcao-carrinho">Adicionar ao Carrinho</button>
             </div>
