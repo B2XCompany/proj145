@@ -21,10 +21,8 @@ $senha = md5($senha);
 # pegar todos usuários com email e senha no banco de dados
 $query = mysqli_query($__CONEXAO__, "select id from users where email='$email' and senha='$senha'");
 
-# checar se não possui item na query de cima, se não existir, logo, não existe usuário com os dados enviados
-if(mysqli_num_rows($query) == 0){
-    endCode("Dados incorretos.", false);
-}
+# chamando função setada no sys/conexao.php para checar se existe algum elemento nessa query
+existsQuery($__CONEXAO__, $query, 'Dados incorretos.', true);
 
 # salvar os dados na sessão do usuário para ele se manter logado
 $_SESSION["email"] = $email;

@@ -143,3 +143,16 @@ function converterHora($time){
     $time = date("H:i", ($time / 1000 + 10800 ));//10800 = +3h timezone
     return $time;
 }
+
+
+function existsQuery($__CONEXAO__, $query, $string, $bool){
+    if($bool){
+        if(mysqli_num_rows($query) < 1){
+            endCode($string, false);
+        }
+    } else {
+        if(mysqli_num_rows($query) > 0){
+            endCode($string, false);
+        }
+    }
+}

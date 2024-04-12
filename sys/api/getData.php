@@ -3,8 +3,13 @@ include "../conexao.php";
 
 justLog($__EMAIL__);
 
+$setor = $_GET['setor'];
+if($setor){
+    endCode('chegou', false);
+}
+endCode('rapaz', false);
 # pegar todos produtos do banco de dados
-$query = mysqli_query($__CONEXAO__, "select * from produtos");
+$query = mysqli_query($__CONEXAO__, "select * from produtos where produtos where setor='$setor'");
 
 # criar um array vazio onde vai ser armazenado os itens pegos
 $data = array();
