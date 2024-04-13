@@ -11,8 +11,8 @@ $nome       = scapeString($__CONEXAO__, $json->nome);
 $plaqueta   = scapeString($__CONEXAO__, $json->plaqueta);
 $entidade   = scapeString($__CONEXAO__, $json->entidade);
 $especie    = scapeString($__CONEXAO__, $json->especie);
-$lote       = scapeString($__CONEXAO__, $json->lote);
 $setor      = scapeString($__CONEXAO__, $json->setor);
+$local      = scapeString($__CONEXAO__, $json->local);
 $descricao  = scapeString($__CONEXAO__, $json->descricao);
 $imobilizado = scapeString($__CONEXAO__, $json->imobilizado);
 $quantidade = scapeString($__CONEXAO__, $json->quantidade);
@@ -23,19 +23,19 @@ checkMissing([
     $plaqueta,
     $entidade,
     $especie,
-    $lote,
+    $setor,
+    $local,
     $descricao,
     $imobilizado,
     $quantidade
 ]);
 
-$checkQuery = $imobilizado ? "plaqueta='$plaqueta'" : "lote='$lote'";
-$query = mysqli_query($__CONEXAO__, "select id from produtos where $checkQuery");
+$query = mysqli_query($__CONEXAO__, "select id from produtos where plaqueta='$plaqueta'");
 
 # chamando função do sys/conexao.php, se a quantidade for maior que zero significa que existe, logo, não pode ser atualizado
-existsQuery($__CONEXAO__, $query, 'Já existe um produto com essa identificação.', false);
+existsQuery($__CONEXAO__, $query, 'Não existe um produto com essa identificação.', true);
 
 # atualizando o banco de dados com os dados novos
-mysqli_query($__CONEXAO__, "update produtos set nome='$nome', plaqueta='$plaqueta', entidade='$entidade', especie='$especie', lote='$lote', descricao='$descricao', imobilizado='$imobilizado', quantidade='$quantidade' where id='$id'");
+mysqli_query($__CONEXAO__, "update produtos set nome='$nome', plaqueta='$plaqueta', entidade='$entidade', especie='$especie', setor='$setor', local='$local', descricao='$descricao', imobilizado='$imobilizado', quantidade='$quantidade' where id='$id'");
 
 endCode("Produto atualizado!");
