@@ -3,16 +3,9 @@ include "../conexao.php";
 
 justLog($__EMAIL__);
 
-$setor = $_GET['setor'];
 
-$filter = "";
-
-if($setor){
-    $filter = "where setor='$setor'";
-}
-
-# pegar todos produtos do banco de dados com um filtro se o setor foi definido
-$query = mysqli_query($__CONEXAO__, "select * from produtos $filter");
+# pegar todos produtos do banco de dados
+$query = mysqli_query($__CONEXAO__, "select * from produtos");
 
 # criar um array vazio onde vai ser armazenado os itens pegos
 $data = array();
@@ -24,24 +17,22 @@ while($dados = mysqli_fetch_array($query)){
     $plaqueta       = $dados['plaqueta'];
     $entidade       = $dados['entidade'];
     $especie        = $dados['especie'];
-    $setor          = $dados['setor'];
-    $local          = $dados['local'];
     $descricao      = $dados['descricao'];
     $imobilizado    = $dados['imobilizado'];
     $quantidade     = $dados['quantidade'];
+    $imagem         = $dados['imagem'];
 
     # criando um array no formato objeto para acessar mais facilmente no front end
     $array = array(
         "id"            => $id,
-        "nome"          => $nome,
-        "plaqueta"      => $plaqueta,
-        "entidade"      => $entidade,
         "especie"       => $especie,
-        "setor"         => $setor,
-        "local"         => $local,
-        "descricao"     => $descricao,
         "imobilizado"   => $imobilizado,
-        "quantidade"    => $quantidade
+        "nome"          => $nome,
+        "imagem"        => $imagem
+        "entidade"      => $entidade,
+        "plaqueta"      => $plaqueta,
+        "descricao"     => $descricao,
+        "quantidade"    => $quantidade,
     );
     
     # inserindo esse array objeto dentro do array maior (line:10)

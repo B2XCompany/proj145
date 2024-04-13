@@ -6,12 +6,12 @@ class Produtos{
     // vai ser executado quando a classe for iniciada
     constructor(){
         this.data = []
-        this.filterData = ''
+        this.filter = false
         getAllItems()
     }
 
     static getAllItems(){
-        let url = 'sys/api/getData.php?setor=' + this.filterData;
+        let url = 'sys/api/getData.php';
         // enviar requisição para getData.php
         return fetch(url)
         // retornando resposta do getData.php
@@ -31,66 +31,76 @@ class Produtos{
                 this.data.push(obj);
             }
             // criar header e depois criar os elementos de dentro da tabela
-            this.createItemsDiv(this.data)
+            this.createItemsDiv(this.data, this.filter, false)
         })
     }
 
     // função para criar os elementos da tabela
-    static createItemsDiv(data){
+    static createItemsDiv(data, filter, search){
+        tabelaProdutos.innerHTML = '';
+        console.log(data);
         for(let item of data){
-            // criar linha
+            if(item.especie != filter && filter){
+                continue
+            }
+            if(item.nome != search && search){
+                continue
+            }
+            // criar div principal
             let div = document.createElement('div');
-            for(let value of Object.values(item)){
-                // criar celula
-                let div2 = document.createElement('div');
-                div2.innerText = value;
-                tr.append(td);
+            for(let [key, value] of Object.entries(item)){
+                if(['id', 'especie', 'imobilizado', 'plaqueta'].includes(key)){
+                    continue
+                }
+                console.log(key);
+                
+                let divInterna = document.createElement('div');
+
+                if(key == 'nome'){
+                    let title = document.createElement('p');
+                    title.classList.add('produto-titulo');
+                    title.innerText = value;
+                    divInterna.append(title);
+
+                } else if(key == 'imagem'){
+                    let divImg = document.createElement('div');
+
+                    let img = document.createElement('img');
+                    img.classList.add('produto-img');
+                    img.src = 'imagens/' + value
+
+                    divImg.append(img);
+                    divInterna.append(divImg);
+
+                } else if(key == 'entidade'){
+                    let p = document.createElement('p');
+                    p.classList.add('produto-identificador');
+                    p.innerText = value + ' ' + item.plaqueta;
+
+                    divInterna.append(p);
+
+                } else if(key == 'descricao'){
+                    let p = document.createElement('p');
+                    p.classList.add('produto-descricao');
+                    p.innerText = value
+
+                    divInterna.append(p);
+
+                } else { // quantidade
+                    let p = document.createElement('p');
+                    p.classList.add('produto-quantidade');
+                    p.innerText = 'Disponível no estoque - ' + value;
+
+                    divInterna.append(p);
+                }
+                div.append(divInterna);
             }
             tabelaProdutos.append(div);
         }
-        return; // criar lista de itens
-    }
-
-    // declarando função para ser usada nas classes filhas
-    getItemData(id){
-        return;
-    }
-    createDiv(data){
-        return;
     }
 }
 
-class ProdutoDetalhe extends Produtos{
-    constructor(id){
-        this.id = id
-        this.itemData = {}
-    }
-
-    getItemData(id){
-        let url = 'sys/api/getItem.php';
-        // enviar id para getItem.php
-        return fetch(url, {
-            method: 'POST',
-            body: JSON.stringify({"id": id})
-        })
-        // retornando resposta do getItem.php
-        .then(e=>e.json())
-        .then(e=>{
-            if(!e.response){
-                newMsg(e);
-                return;
-            }
-            let data = e.mensagem;
-            // colocando os dados no objeto this.itemData
-            for(let [key, value] of Object.entries(data)){
-                this.itemData[key] = value;
-            }
-            this.createDiv(this.itemData)
-        })
-    }
-    
-    // especificando função para essa classe filho
-    createDiv(data){
-        return; // criar detalhes
-    }
-}
+searchBar.addEventListener('keyup', ()=>{
+    let val = searchBar.value.toString();
+    produtos.createItemsDiv(produtos.data, produtos.filter, val);
+})
