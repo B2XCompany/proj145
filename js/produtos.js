@@ -40,7 +40,7 @@ class Produtos{
         tabelaProdutos.innerHTML = '';
         console.log(data);
         for(let item of data){
-            if(item.especie != filter && filter){
+            if(item.setor != filter && filter){
                 continue
             }
             if(item.nome != search && search){
@@ -49,7 +49,7 @@ class Produtos{
             // criar div principal
             let div = document.createElement('div');
             for(let [key, value] of Object.entries(item)){
-                if(['id', 'especie', 'imobilizado', 'plaqueta'].includes(key)){
+                if(['id', 'imobilizado', 'plaqueta'].includes(key)){
                     continue
                 }
                 console.log(key);

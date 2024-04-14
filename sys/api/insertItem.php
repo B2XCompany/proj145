@@ -10,9 +10,9 @@ $json = json_decode($request);
 $nome       = scapeString($__CONEXAO__, $json->nome);
 $plaqueta   = scapeString($__CONEXAO__, $json->plaqueta);
 $entidade   = scapeString($__CONEXAO__, $json->entidade);
-$especie    = scapeString($__CONEXAO__, $json->especie);
 $setor      = scapeString($__CONEXAO__, $json->setor);
-$local      = scapeString($__CONEXAO__, $json->local);
+$filial     = 2061;
+$local      = "Centro Logístico";
 $descricao  = scapeString($__CONEXAO__, $json->descricao);
 $imobilizado = scapeString($__CONEXAO__, $json->imobilizado);
 $quantidade = scapeString($__CONEXAO__, $json->quantidade);
@@ -21,14 +21,17 @@ $quantidade = scapeString($__CONEXAO__, $json->quantidade);
 checkMissing([
     $nome,
     $plaqueta,
-    $entidade,
-    $especie,
     $setor,
+    $filial,
     $local,
     $descricao,
     $imobilizado,
     $quantidade
 ]);
+
+if($imobilizado && $entidade==''){
+    endCode('Entidade não pode estar vazia quando item está imobilizado.', false);
+}
 
 # checar se existe já algum item igual no banco de dados
 $query = mysqli_query($__CONEXAO__, "select id from produtos where plaqueta='$plaqueta'");
@@ -37,6 +40,6 @@ $query = mysqli_query($__CONEXAO__, "select id from produtos where plaqueta='$pl
 existsQuery($__CONEXAO__, $query, 'Já existe um produto com essa identificação.', false);
 
 # inserindo no banco de dados o item com as especificações
-mysqli_query($__CONEXAO__, "insert into produtos (nome, plaqueta, entidade, especie, setor, local, descricao, imobilizado, quantidade) values ('$nome', '$plaqueta', '$entidade', $especie', '$setor', '$local', '$descricao', '$imobilizado', '$quantidade')");
+mysqli_query($__CONEXAO__, "insert into produtos (nome, plaqueta, entidade, setor, local, filial, descricao, imobilizado, quantidade) values ('$nome', '$plaqueta', '$entidade', '$setor', '$local', '$filial', '$descricao', '$imobilizado', '$quantidade')");
 
 endCode("Produto registrado!");

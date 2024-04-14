@@ -15,7 +15,7 @@ cantLog($__EMAIL__);
     <form action="javascript:void(0)">
         <input type="text" id="email" placeholder="Digite seu email...">
         <input type="password" id="senha" placeholder="Senha">
-        <button onclick="logarUser()">Entrar</button>
+        <button onclick="addNewData('user/login.php', {email: email.value, senha: senha.value})">Entrar</button>
     </form>
 
     <a href="./registrar.php">Registrar</a>

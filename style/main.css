@@ -1,0 +1,18 @@
+#imobilizadoreg { 
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.toggle {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 40px;
+    /* margin-left: auto; */
+	height: 20px;
+	background: #c7c7c7;
+    border: 1px solid #ccc;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}

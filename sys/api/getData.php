@@ -16,7 +16,6 @@ while($dados = mysqli_fetch_array($query)){
     $nome           = $dados['nome'];
     $plaqueta       = $dados['plaqueta'];
     $entidade       = $dados['entidade'];
-    $especie        = $dados['especie'];
     $descricao      = $dados['descricao'];
     $imobilizado    = $dados['imobilizado'];
     $quantidade     = $dados['quantidade'];
@@ -25,7 +24,6 @@ while($dados = mysqli_fetch_array($query)){
     # criando um array no formato objeto para acessar mais facilmente no front end
     $array = array(
         "id"            => $id,
-        "especie"       => $especie,
         "imobilizado"   => $imobilizado,
         "nome"          => $nome,
         "imagem"        => $imagem

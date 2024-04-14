@@ -5,10 +5,12 @@ include "../../conexao.php";
 $request = file_get_contents('php://input');
 $json = json_decode($request);
 
+$nome   = scapeString($__CONEXAO__, $json->nome);
 $email  = scapeString($__CONEXAO__, $json->email);
 $senha  = scapeString($__CONEXAO__, $json->senha);
 
 checkMissing([
+    $nome,
     $email,
     $senha
 ]);
@@ -23,10 +25,6 @@ $query = mysqli_query($__CONEXAO__, "select id from users where email='$email'")
 existsQuery($__CONEXAO__, $query, "Já existe um usuário com este email", false);
 
 # cadastrando usuário no banco de dados
-mysqli_query($__CONEXAO__, "insert into users (email, senha) values ('$email', '$senha')");
+mysqli_query($__CONEXAO__, "insert into filaespera (nome, email, senha) values ('$nome', '$email', '$senha')");
 
-# salvar os dados na sessão do usuário para ele se manter logado
-$_SESSION["email"] = $email;
-$_SESSION["password"] = $senha;
-
-endCode("Sucesso!", true);
+endCode("Usuário enviado para ser aprovado!", true);
