@@ -31,6 +31,7 @@ class Produtos{
                 this.data.push(obj);
             }
             // criar header e depois criar os elementos de dentro da tabela
+            this.createHeader() // falta fazer -> vai criar os filtros
             this.createItemsDiv(this.data, this.filter, false)
         })
     }
@@ -99,8 +100,3 @@ class Produtos{
         }
     }
 }
-
-searchBar.addEventListener('keyup', ()=>{
-    let val = searchBar.value.toString();
-    produtos.createItemsDiv(produtos.data, produtos.filter, val);
-})

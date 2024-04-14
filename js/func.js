@@ -19,3 +19,8 @@ function addNewData(local, data){
         response: false
     }))
 }
+
+searchBar.addEventListener('keyup', ()=>{
+    let val = searchBar.value.toString();
+    produtos.createItemsDiv(produtos.data, produtos.filter, val);
+})

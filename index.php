@@ -63,8 +63,10 @@ if(!$__EMAIL__){
     <div id="tabelaProdutos"></div>
 
     <script>
-        for(i of setoresArray){
-            setorreg.innerHTML += `<option value='${i}'>${i}</option>`
+        if(typeof setorreg !== "undefined"){
+            for(i of setoresArray){
+                setorreg.innerHTML += `<option value='${i}'>${i}</option>`
+            }
         }
     </script>
 </body>
