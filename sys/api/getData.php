@@ -1,7 +1,7 @@
 <?php
 include "../conexao.php";
 
-justLog($__EMAIL__);
+justLog($__EMAIL__, $__TYPE__, 0);
 
 
 # pegar todos produtos do banco de dados

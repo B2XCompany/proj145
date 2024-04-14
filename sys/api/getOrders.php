@@ -1,7 +1,7 @@
 <?php
 include "../conexao.php";
 
-justLog($__EMAIL__);
+justLog($__EMAIL__, $__TYPE__, 1);
 
 # pegar todos os pedidos
 $query = mysqli_query($__CONEXAO__, "select * from pedidos where status='0'");

@@ -97,8 +97,8 @@ function cantLog($__EMAIL__){
 }
 
 // Função para finalizar o script se o usuário não estiver logado
-function justLog($__EMAIL__){
-    if(!$__EMAIL__){
+function justLog($__EMAIL__, $__TYPE__, $type){
+    if($__TYPE__ < $type or !$__EMAIL__){
         endCode("Sem permissão", false);
         exit;
     }

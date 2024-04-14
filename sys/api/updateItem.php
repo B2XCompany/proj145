@@ -1,7 +1,8 @@
 <?php
 include "../conexao.php";
 
-justLog($__EMAIL__);
+justLog($__EMAIL__, $__TYPE__, 1);
+
 
 # pegar a requisição em json
 $request = file_get_contents('php://input');

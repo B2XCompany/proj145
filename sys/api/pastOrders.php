@@ -1,7 +1,8 @@
 <?php
 include "../conexao.php";
 
-justLog($__EMAIL__);
+justLog($__EMAIL__, $__TYPE__, 1);
+
 
 # pegar pedidos aceitos ou rejeitados
 $query = mysqli_query($__CONEXAO__, "select * from pedidos where status in (2,3)");

@@ -1,7 +1,8 @@
 <?php
 include "../conexao.php";
 
-justLog($__EMAIL__);
+justLog($__EMAIL__, $__TYPE__, 1);
+
 
 # pegar a requisição em json
 $request = file_get_contents('php://input');
@@ -9,7 +10,6 @@ $json = json_decode($request);
 
 $id       = scapeString($__CONEXAO__, $json->id);
 $status   = scapeString($__CONEXAO__, $json->status);
-# falta imagem -------------------------------------------------------
 
 checkMissing([
     $id,
