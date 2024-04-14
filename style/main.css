@@ -1,3 +1,44 @@
+#top {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#adicionarProdutos {
+	flex: 1 0 5rem;
+	display: flex;
+}
+
+.input-div {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	max-width: 300px;
+}
+
+.input-p {
+	font-size: 1.2rem;
+}
+
+.input-div input {
+	width: 90%;
+	padding: 4px 6px;
+}
+
+#aprovarUsuarios, #aprovarPedidos {
+	flex: 1 0 10rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 #imobilizadoreg { 
 	height: 0;
 	width: 0;
