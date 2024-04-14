@@ -22,16 +22,20 @@
 .input-div input {
 	width: 90%;
 	padding: 4px 6px;
+	border-radius: 3px;
+}
+
+.input-div:focus {
+	border: 1px solid #2358a9;
+}
+
+.input-div {
+	transition: color .8s ease-in-out;
 }
 
 #aprovarUsuarios, #aprovarPedidos {
 	flex: 1 0 10rem;
 }
-
-
-
-
-
 
 
 
