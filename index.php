@@ -11,6 +11,7 @@ if(!$__EMAIL__){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produtos</title>
+    <?php if(requireLevel($__TYPE__, 1){ ?><script src="js/getAdm.js"></script><?}) ?>
     <script src='js/produtos.js'></script>
     <script>const produtos = new Produtos(); </script>
     <script src="js/func.js"></script>
