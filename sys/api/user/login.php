@@ -9,6 +9,8 @@ $json = json_decode($request);
 
 $email  = scapeString($__CONEXAO__, $json->email);
 $senha  = scapeString($__CONEXAO__, $json->senha);
+var_dump($email);
+var_dump($senha);
 
 checkMissing([
     $email,
