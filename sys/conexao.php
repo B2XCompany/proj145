@@ -15,14 +15,11 @@ header('Content-Type: text/html; charset=utf-8');
 $__METHOD__     = $_SERVER["REQUEST_METHOD"];
 
 // Pega o nome do host sob o qual o script atual está sendo executado
-// $__URL__        = $_SERVER["HTTP_HOST"];
-$__URL__        = "localhost/proj145";
+$__URL__        = $_SERVER["HTTP_HOST"];
 
 // Define a URL base do site
-// $__HOST__   = $_SERVER['HTTP_HOST'];
-$__HOST__        = "localhost/proj145";
-// $__WEB__    = $_SERVER['REQUEST_SCHEME'] . "://" . $__HOST__;
-$__WEB__        = "localhost/proj145";
+$__HOST__   = $_SERVER['HTTP_HOST'];
+$__WEB__    = $_SERVER['REQUEST_SCHEME'] . "://" . $__HOST__;
 
 // Conecta ao banco de dados MySQL
 $__CONEXAO__ = mysqli_connect(
@@ -96,7 +93,7 @@ function checkMissing($array){
 // Função para redirecionar o usuário para a URL principal se ele não estiver logado
 function cantLog($__EMAIL__){
     if($__EMAIL__){
-        header("Location: ./");
+        header("Location: $__URL__");
         exit;
     }
 }
