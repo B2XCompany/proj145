@@ -1,7 +1,7 @@
-<?
+<?php
 include "sys/conexao.php";
 
-if(!$__EMAIL__){
+if(!isset($_SESSION['email'])){
     header("Location: ./logar.php");    
 }
 ?>
@@ -11,14 +11,14 @@ if(!$__EMAIL__){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produtos</title>
-    <?php if(requireLevel($__TYPE__, 1){ ?><script src="js/getAdm.js"></script><?}) ?>
+    <?php if(requireLevel($__TYPE__, 1)){ ?><script src="js/getAdm.js"></script><?php } ?>
     <script src='js/produtos.js'></script>
     <script>const produtos = new Produtos(); </script>
     <script src="js/func.js"></script>
     <link rel="stylesheet" href="style/main.css">
 </head>
 <body>
-    <? if(requireLevel($__TYPE__, 1)){ ?>
+    <?php if(requireLevel($__TYPE__, 1)){ ?>
     <div id="top">
         <div id="adicionarProdutos">
             <form action="javascript:void(0)">
@@ -63,7 +63,7 @@ if(!$__EMAIL__){
         <div id="aprovarUsuarios"></div>
         <div id="aprovarPedidos"></div>
     </div>
-    <? } ?>
+    <?php } ?>
 
     <div id="tabelaProdutos"></div>
 

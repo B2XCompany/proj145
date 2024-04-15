@@ -24,7 +24,7 @@ $senha = $dados['senha'];
 existsQuery($__CONEXAO__, $query, 'Não existe uma conta na fila de espera com esse email.', true);
 
 # tirando o usuario da fila de espera e mandando para os normais
-mysqli_query($__CONEXAO__, "insert into users (nome, email, senha) values ('$nome', '$email', '$senha')");
+mysqli_query($__CONEXAO__, "insert into usuarios (nome, email, senha) values ('$nome', '$email', '$senha')");
 mysqli_query($__CONEXAO__, "delete from listaespera where email='$email'");
 
 endCode("Produto atualizado!");

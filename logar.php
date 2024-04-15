@@ -9,6 +9,7 @@ cantLog($__EMAIL__);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logar</title>
+    <script src="js/func.js"></script>
 </head>
 <body>
     <h1>Logar</h1>
@@ -19,31 +20,5 @@ cantLog($__EMAIL__);
     </form>
 
     <a href="./registrar.php">Registrar</a>
-    <script>
-        // função que envia os dados para a API criada no back 
-        const logarUser = () => {
-            // Dados que vamos passar em um objeto
-            let data = {
-                email: email.value,
-                senha: senha.value
-            }
-
-            // enviar a requisição com os dados anteriores
-            fetch("./sys/api/user/login.php",{
-                method: "POST",
-                body: JSON.stringify(data)
-            })
-            .then(e=>e.json())
-            .then(e=>{
-                if(e.response){
-                    window.location = "./";
-                }
-            })
-            .catch(e=>{
-                console.log("erro")
-            })
-        }
-    </script>
-    <script type='module' src="./js/produtos.js"></script>
 </body>
 </html>

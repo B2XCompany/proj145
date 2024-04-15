@@ -19,7 +19,7 @@ while($dados = mysqli_fetch_array($query)){
     $itens          = $dados['itens'];
     $status         = $dados['status'];
 
-    $queryC = mysqli_query($__CONEXAO__, "select nome from users where id='$cliente'");
+    $queryC = mysqli_query($__CONEXAO__, "select nome from usuarios where id='$cliente'");
     $nomeC  = mysqli_fetch_assoc($queryC)['nome'];
 
     $itens = substr($itens, 1);

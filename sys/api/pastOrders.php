@@ -18,7 +18,7 @@ while($dados = mysqli_fetch_array($query)){
     $itens          = $dados['itens'];
     $status         = $dados['status'];
 
-    $queryC = mysqli_query($__CONEXAO__, "select nome, email from users where id='$cliente'");
+    $queryC = mysqli_query($__CONEXAO__, "select nome, email from usuarios where id='$cliente'");
     $dadosC = mysqli_fetch_assoc($queryC);
     $nomeC  = $dadosC['nome'];
     $emailC  = $dadosC['email'];

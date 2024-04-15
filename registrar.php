@@ -10,6 +10,7 @@ cantLog($__EMAIL__);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/func.js"></script>
     <title>Logar</title>
+    <script src="js/func.js"></script>
 </head>
 <body>
     <h1>Cadastrar</h1>

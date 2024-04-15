@@ -5,19 +5,14 @@ isActive = false;
 function addNewData(local, data){
     if(isActive) return;
     isActive = true;
-    fetch(`../sys/api/${local}`,{
+    fetch(`./sys/api/${local}`,{
         method: "POST",
         body: JSON.stringify(data)
     })
     .then(e=>e.json())
-    .then(e=>{
-        isActive = false;
-        newMsg(e);
+    .then((e)=>{
+        console.log(e)
     })
-    .catch(e=>newMsg({
-        mensagem: "Ocorreu algum erro, contate o administrador",
-        response: false
-    }))
 }
 
 searchBar.addEventListener('keyup', ()=>{

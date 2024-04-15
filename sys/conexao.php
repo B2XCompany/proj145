@@ -1,4 +1,6 @@
 <?php
+session_cache_expire(30);
+
 // Inicia uma nova sessão ou resume a sessão existente
 session_start();
 
@@ -13,11 +15,14 @@ header('Content-Type: text/html; charset=utf-8');
 $__METHOD__     = $_SERVER["REQUEST_METHOD"];
 
 // Pega o nome do host sob o qual o script atual está sendo executado
-$__URL__        = $_SERVER["HTTP_HOST"];
+// $__URL__        = $_SERVER["HTTP_HOST"];
+$__URL__        = "localhost/proj145";
 
 // Define a URL base do site
-$__HOST__   = $_SERVER['HTTP_HOST'];
-$__WEB__    = $_SERVER['REQUEST_SCHEME'] . "://" . $__HOST__;
+// $__HOST__   = $_SERVER['HTTP_HOST'];
+$__HOST__        = "localhost/proj145";
+// $__WEB__    = $_SERVER['REQUEST_SCHEME'] . "://" . $__HOST__;
+$__WEB__        = "localhost/proj145";
 
 // Conecta ao banco de dados MySQL
 $__CONEXAO__ = mysqli_connect(
@@ -45,7 +50,7 @@ if(isset($_SESSION["password"])){
 }
 
 // Consulta o banco de dados para verificar se o usuário existe
-$_query_ = mysqli_query($__CONEXAO__, "select * from users where email='$__EMAIL__' and senha='$__PASSWORD__'");
+$_query_ = mysqli_query($__CONEXAO__, "select * from usuarios where email='$__EMAIL__' and senha='$__PASSWORD__'");
 
 // Se o usuário não existir, destrói a sessão e inicia uma nova
 if(mysqli_num_rows($_query_) < 1){
@@ -91,7 +96,7 @@ function checkMissing($array){
 // Função para redirecionar o usuário para a URL principal se ele não estiver logado
 function cantLog($__EMAIL__){
     if($__EMAIL__){
-        header("Location: $__URL__");
+        header("Location: ./");
         exit;
     }
 }
@@ -112,14 +117,14 @@ function scapeString($__CONEXAO__, $string){
 
 // Função para verificar se o usuário já existe no banco de dados
 function stopUserExist($__CONEXAO__, $email, $cpf){
-    $tryConnect = mysqli_query($__CONEXAO__, "select id from users where email='$email'") or die("erro select");
+    $tryConnect = mysqli_query($__CONEXAO__, "select id from usuarios where email='$email'") or die("erro select");
 
     if(mysqli_num_rows($tryConnect) > 0){
         endCode("Email já está em uso", false);
         exit;
     }
 
-    $tryConnect = mysqli_query($__CONEXAO__, "select id from users where cpf='$cpf'") or die("erro select");
+    $tryConnect = mysqli_query($__CONEXAO__, "select id from usuarios where cpf='$cpf'") or die("erro select");
 
     if(mysqli_num_rows($tryConnect) > 0){
         endCode("CPF já está em uso", false);
@@ -130,7 +135,7 @@ function stopUserExist($__CONEXAO__, $email, $cpf){
 
 // Função para verificar se o usuário não existe no banco de dados
 function stopUserExistnt($__CONEXAO__, $string){
-    $tryConnect = mysqli_query($__CONEXAO__, "select * from users where email='$string'") or die("erro select");
+    $tryConnect = mysqli_query($__CONEXAO__, "select * from usuarios where email='$string'") or die("erro select");
 
     if(mysqli_num_rows($tryConnect) < 1){
         return true;
@@ -156,4 +161,11 @@ function existsQuery($__CONEXAO__, $query, $string, $bool){
             endCode($string, false);
         }
     }
+}
+
+function requireLevel($__TYPE__, $type){
+    if($__TYPE__ < $type or !$__TYPE__){
+        return false;
+    }
+    return true;
 }

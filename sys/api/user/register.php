@@ -21,7 +21,7 @@ checkMissing([
 $senha = md5($senha);
 
 # pegar todos usuários com email no banco de dados
-$query = mysqli_query($__CONEXAO__, "select id from users where email='$email'");
+$query = mysqli_query($__CONEXAO__, "select id from usuarios where email='$email'");
 $query2 = mysqli_query($__CONEXAO__, "select id from filaespera where email='$email'");
 
 # chamando função do sys/conexao.php, se a quantidade for maior que zero significa que existe, logo, não pode ser cadastrado
