@@ -4,7 +4,7 @@ include "../conexao.php";
 justLog($__EMAIL__, $__TYPE__, 1);
 
 # pegar todos os pedidos
-$query = mysqli_query($__CONEXAO__, "select * from pedidos where status='0'");
+$query = mysqli_query($__CONEXAO__, "select * from pedidos where status in (0,1)");
 
 # criar um array vazio onde vai ser armazenado os itens pegos
 $data = array();
@@ -13,7 +13,7 @@ $data = array();
 while($dados = mysqli_fetch_array($query)){
     $id             = $dados['id'];
     $cliente        = $dados['cliente'];
-    $setor          = $dados['setor'];
+    $filial         = $dados['filial'];
     $local          = $dados['local'];
     $data           = $dados['data'];
     $itens          = $dados['itens'];
@@ -40,7 +40,7 @@ while($dados = mysqli_fetch_array($query)){
     $array = array(
         "id"        => $id,
         "cliente"   => $nomeC,
-        "setor"     => $setor,
+        "filial"     => $filial,
         "local"     => $local,
         "data"      => $data,
         "itens"     => $arrItens,

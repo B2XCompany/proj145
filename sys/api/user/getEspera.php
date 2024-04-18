@@ -4,18 +4,20 @@ justLog($__EMAIL__, $__TYPE__, 1);
 
 
 # pegar todos usuarios na fila de espera do banco de dados
-$query = mysqli_query($__CONEXAO__, "select nome,email from filaespera");
+$query = mysqli_query($__CONEXAO__, "select id,nome,email from filaespera");
 
 # criar um array vazio onde vai ser armazenado os itens pegos
 $data = array();
 
 # criar um loop pela query para poder pegar todos dados
 while($dados = mysqli_fetch_array($query)){
+    $id     = $dados['id'];
     $nome   = $dados['nome'];
     $email  = $dados['email'];
 
     # criando um array no formato objeto para acessar mais facilmente no front end
     $array = array(
+        "id"    => $id,
         "nome"  => $nome,
         "email" => $email
     );
