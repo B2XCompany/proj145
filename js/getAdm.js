@@ -40,7 +40,7 @@ async function usuariosTake(){
 }
 
 
-async function usuariosTake(){
+async function ordersTake(){
     let url = 'sys/api/getOrders';
     return fetch(url)
     .then(e=>e.json())
@@ -108,4 +108,57 @@ async function usuariosTake(){
             aprovarPedidos.append(div);
         }
     })
+}
+
+
+async function pastOrdersTake(){
+    let url = 'sys/api/pastOrders';
+    return fetch(url)
+    .then(e=>e.json())
+    .then(e=>{
+        for(i of e){
+            let div = document.createElement("div");
+            div.classList.add('pedidos-div');
+
+            let nome = document.createElement('p');
+            nome.classList.add('produtos-cliente');
+            nome.innerText = 'Cliente: ' + i.cliente;
+
+            let data = document.createElement('p');
+            data.innerText = i.data;
+
+            let status = document.createElement('p');
+            status.innerText = 'Status: ' + status;
+
+            let itensDiv = document.createElement('div');
+
+            let itensTitle = document.createElement('p');
+            itensTitle.innerText = 'Itens do pedido';
+            itensTitle.classList.add('pedidos-itens-title');
+
+            itemDiv = document.createElement('div');
+            itemDiv.classList.add('pedidos-itens-item');
+
+            i.itens.map(item => ()=>{
+                let p = document.createElement("p");
+                p.innerText = item
+                itemDiv.append(p);
+            })
+
+            div.append(nome);
+            div.append(data);
+            div.append(status);
+            itensDiv.append(itensTitle);
+            itensDiv.append(itemDiv);
+            div.append(itensDiv);
+            
+            aprovarPedidos.append(div);
+        }
+    })
+}
+
+function toggleAntigosPedidos(me, bool){
+    antigosPedidos.style.display = bool ? 'flex' : 'none';
+    me.innerText = bool ? 'Abrir pedidos antigos' : 'Fechar pedidos antigos';
+    me.setAttribute("onclick", `toggleAntigosPedidos(this, ${!bool})`);
 }

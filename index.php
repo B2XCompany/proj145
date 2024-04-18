@@ -60,8 +60,14 @@ if(!isset($_SESSION['email'])){
                 <button onclick="addNewData('insertItem.php', {nome: nomereg.value, plaqueta: plaquetareg.value, imobilizado: imobilizadoreg.value, entidade: entidadereg.value, setor: setorreg.value, descricao: descricaoreg.value, quantidade: quantidadereg.value})">Cadastrar</button>
             </form>
         </div>
-        <div id="aprovarUsuarios"></div>
-        <div id="aprovarPedidos"></div>
+        <div id='top-bot'>
+            <div id="aprovarUsuarios"></div>
+            <div id="aprovarPedidos"></div>
+        </div>
+        <div>
+            <button onclick="toggleAntigosPedidos(this, true)">Abrir pedidos antigos</button>
+            <div id="antigosPedidos"></div>
+        </div>
     </div>
     <?php } ?>
 
